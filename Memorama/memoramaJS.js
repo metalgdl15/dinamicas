@@ -239,7 +239,7 @@ function rotar(carta){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //cuando das click al boton de iniciar juego
-$("#btnCorrer").click(function (e) { 
+$("#btnCorrer").click(function (ev) { 
     if(ev.detail < 2){
         finDelJuego = true;
         reiniciar = true;
