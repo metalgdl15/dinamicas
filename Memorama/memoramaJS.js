@@ -240,9 +240,11 @@ function rotar(carta){
 
 //cuando das click al boton de iniciar juego
 $("#btnCorrer").click(function (e) { 
-    finDelJuego = true;
-    reiniciar = true;
-    setTimeout(inicializar_juego,1000);
+    if(ev.detail < 2){
+        finDelJuego = true;
+        reiniciar = true;
+        setTimeout(inicializar_juego,1000);
+    }
 });
 
 $('.contenedor').on('click','.carta', function(ev){

@@ -37,7 +37,7 @@ function limpiar(){
     $(".score").val(score);
     $(".score").html("Score: "+ score);
     $("#txtPregunta").html("");
-    $("#Asignatura").prop('disabled', false);
+    
 
     $(".boton").val("")
     $(".boton").css("background-color","#333");
@@ -57,7 +57,6 @@ function Correr(){
     finDelJuego = false;
     reiniciar = false;
     
-    $("#Asignatura").prop('disabled', true);   
     leerJson();
     cargarPregunta();
     inicializar_tiempo();
@@ -181,7 +180,7 @@ function leerJson(){
         dataType: 'json',
         async: false,
         success: function (json) {
-            setListaPreguntas(json[$("#Asignatura").val()]);
+            setListaPreguntas(json[$("#asignatura").val()]);
         }
     });
 
@@ -190,12 +189,12 @@ function leerJson(){
         dataType: 'json',
         async: false,
         success: function (json) {
-            setListaRespuestas(json[$("#Asignatura").val()]);
+            setListaRespuestas(json[$("#asignatura").val()]);
         }
     });
     /* JQuery asincrono
     $.getJSON("preguntas.json", function (json) {
-        setListaPreguntas(json[$("#Asignatura").val()]);
+        setListaPreguntas(json[$("#asignatura").val()]);
     });
     */
 }
@@ -221,10 +220,13 @@ function ajustarTexto(e){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Evento cuando se le de clic al boton de iniciar
-$("#btnCorrer").on("click", function(){
-    finDelJuego = true;
-    reiniciar = true;
-    setTimeout(Correr, 1000);
+$("#btnCorrer").on("click", function(ev){
+    console.log(ev.detail);
+    if(ev.detail < 2){
+        finDelJuego = true;
+        reiniciar = true;
+        setTimeout(Correr, 1000);
+    }
 });
 
 //Cuando se les da click a los botonoes
